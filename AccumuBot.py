@@ -5,6 +5,7 @@ import signal
 import sys
 import time
 import os
+from random import randint
 
 # Get these from https://bittrex.com/Account/ManageApiKey
 def get_secret(secret_file):
@@ -32,38 +33,25 @@ def sigint_handler(signum, frame):
 signal.signal(signal.SIGINT, sigint_handler)
 
 print 'You have {} BTC available.'.format(btcBalance)
-investmentTotal = float(raw_input("How much are you going to invest ?: "))
+investmentTotal = float(raw_input("How do you want to invest ?: "))
 while investmentTotal > btcBalance:
 	print 'You can\'t invest more than {}'.format(btcBalance)
 	investmentTotal = float(raw_input("How much are you going to invest ?: "))
 
 incrementSize = float(investmentTotal / 100)
 
-targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
+btcInvested = 0.0
+
 firstTargetPrice = float(raw_input("Enter the first target price: "))
 secondTargetPrice = float(raw_input("Enter the second target price: "))
 thirdTargetPrice = float(raw_input("Enter the third target price: "))
-activateTargetPrice = float(firstTargetPrice)
+activeTargetPrice = float(firstTargetPrice)
+
+targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
 
 firstTargetActive  = True
 secondTargetActive = False
 thirdTargetActive  = False
-
-if firstTargetActive == True:
-    secondTargetActive = False
-    thirdTargetActive  = False
-    activateTargetPrice = float(firstTargetPrice)
-
-elif secondTargetActive == True:
-    firstTargetActive = False
-    thirdTargetActive  = False
-    activateTargetPrice = float(secondTargetPrice)
-
-else
-    thirdTargetActive == True:
-    firstTargetActive = False
-    secondTargetActive  = False
-    activateTargetPrice = float(thirdTargetPrice)
 
 coinPrice = api.getticker("BTC-" + targetCoin)
 askPrice = coinPrice['Ask']
@@ -73,16 +61,33 @@ clast = coinsummary[0]['Last']
 
 print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
 
-# Things to implement, in no particular order:
-#   1. Some sort of buffer or storage system that keeps track of how much btc has been invested out of the total so that the bot doesn't over-invest and stops buying once the investmentTotal has been achieved
-#   2. If the Ask >= activateTargetPricePrice then prompt the user to either activate the next target price, or wait for the Ask to come down to try and buy more.
-#
+while btcInvested < investmentTotal:
+    if firstTargetActive == True:
+        secondTargetActive = False
+        thirdTargetActive  = False
+        activeTargetPrice = float(firstTargetPrice)
+
+    elif secondTargetActive == True:
+        firstTargetActive = False
+        thirdTargetActive  = False
+        activeTargetPrice = float(secondTargetPrice)
+
+    else
+        thirdTargetActive == True:
+        firstTargetActive = False
+        secondTargetActive  = False
+        activeTargetPrice = float(thirdTargetPrice)
 
 
+    if askPrice < activeTargetPrice:
+        time.sleep(randint(5,600))                                            # Wait a random amount of time between 5 seconds and 10 minutes to place buy order
+        print api.buylimit('BTC-' + targetCoin, IDK_WHAT_GOES_HERE, askPrice) # Place a buy order of incrementSize at askPrice
+        btcInvested += incrementSize                                          # Keep track of how much btc the user has invested so far compared against how much they want to invest in total
+        print "BTC invested so far: {:.8f} out of {:.8f}".format(btcInvested, investmentTotal)
+    else
+        # Prompt user to either activate next target price to continue accumulation, or wait until askPrice is below activeTargetPrice
 
-
-
-
+print "Congratulations, you are fully invested in {}. Enjoy your profits ;)".format(targetCoin)
 
 
 
