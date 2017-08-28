@@ -30,10 +30,10 @@ def sigint_handler(signum, frame):
 signal.signal(signal.SIGINT, sigint_handler)
 
 print 'You have {} BTC available.'.format(btcBalance)
-investmentTotal = float(raw_input("How do you want to invest ?: "))
+investmentTotal = float(raw_input("How much do you want to invest ?: "))
 while investmentTotal > btcBalance:
 	print 'You can\'t invest more than {}'.format(btcBalance)
-	investmentTotal = float(raw_input("How much are you going to invest ?: "))
+	investmentTotal = float(raw_input("How much do you want to invest ?: "))
 
 incrementSize = float(investmentTotal / 100)
 
@@ -84,7 +84,7 @@ while btcInvested < investmentTotal:
     else
         # Prompt user to either activate next target price to continue accumulation, or wait until askPrice is below activeTargetPrice
 
-print "Congratulations, you are fully invested in {}. Enjoy your profits ;)".format(targetCoin)
+print "Congratulations, you have filled your investment in {}. Enjoy your profits ;)".format(targetCoin)
 
 
 
