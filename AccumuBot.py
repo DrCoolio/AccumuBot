@@ -23,9 +23,6 @@ api = bittrex(key, secret)
 # do before entering coin to save the API call during the pump
 btcBalance = api.getbalance("BTC")['Available']
 
-# Enables limit trading
-allow_orders = True
-
 def sigint_handler(signum, frame):
     """Handler for ctrl+c"""
     print '\n[!] CTRL+C pressed. Exiting...'
