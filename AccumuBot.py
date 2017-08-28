@@ -39,10 +39,14 @@ while investmentTotal > btcBalance:
 
 incrementSize = float(investmentTotal / 100)
 
-targetCoin = raw_input("Enter the target Coin ticker name (i.e. BTC, ETH, BITB): ")
+targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
 firstTargetPrice = float(raw_input("Enter the first target price: "))
 secondTargetPrice = float(raw_input("Enter the second target price: "))
 thirdTargetPrice = float(raw_input("Enter the third target price: "))
+
+firstTargetActive  = True
+secondTargetActive = False
+thirdTargetActive  = False
 
 coinPrice = api.getticker("BTC-" + targetCoin)
 askPrice = coinPrice['Ask']
@@ -52,6 +56,11 @@ clast = coinsummary[0]['Last']
 
 print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
 
+# Things to implement:
+#   1. Check which target price is "active" and if the current Ask if >= that price then the bot doesn't buy
+#   2. Some sort of buffer or storage system that keeps track of how much btc has been invested out of the total so that the bot doesn't over-invest and stops buying once the investmentTotal has been achieved
+#   3. If the Ask is above the active target Price then prompt the user to either activate the next target price, or wait for the Ask to come down to try and buy more.
+#
 
 
 
