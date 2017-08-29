@@ -1,2 +1,2 @@
 # AccumuBot
-A coin accumulation bot for the pro's. 
+A coin accumulation bot for the professionals. 
