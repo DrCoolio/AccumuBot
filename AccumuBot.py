@@ -93,7 +93,7 @@ while btcInvested < investmentTotal:
                 print "Ok, I will wait for the price to come back down below the active target and try to buy again."
 
             else:
-                toggleNextTarget raw_input("Invalid input, please enter 'y' or 'n' without quotations: ")
+                toggleNextTarget = raw_input("Invalid input, please enter 'y' or 'n' without quotations: ")
 
 else:
     break
