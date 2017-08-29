@@ -84,7 +84,8 @@ while btcInvested < investmentTotal:
                         incrementSize = float(investmentTotal - btcInvested)
                         print api.buylimit('BTC-' + targetCoin, numCoins, askPrice)
                         print "Buying {:.8f} {} at {:.8f}".format(numCoins, targetCoin, askPrice)
-                    else
+                    else:
+                        
                 # Setup logic for "no" and "n" input
                 # Setup logic for typo/invalid inputs
 
