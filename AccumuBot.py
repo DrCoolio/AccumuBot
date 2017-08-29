@@ -82,13 +82,12 @@ while btcInvested < investmentTotal:
                         break
 
             elif toggleNextTarget == 'n':
-                print "Ok, I will wait for the price to come back down below the active target and try to buy again."
+                print "Ok, I will wait for the price to come back down below the active target and try to buy again."\
+                while askPrice > activeTargetPrice:
+                    time.sleep(30)
 
             else:
                 toggleNextTarget = raw_input("Invalid input, please enter 'y' or 'n' without quotations: ")
-
-else:
-    break
 
 print "Accumulation complete. Enjoy your profits ;)"
 
