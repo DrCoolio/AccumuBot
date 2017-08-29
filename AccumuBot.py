@@ -64,7 +64,7 @@ while btcInvested < investmentTotal:
         btcInvested += incrementSize
         print "BTC invested so far: {:.8f} out of {:.8f}".format(btcInvested, investmentTotal)
 
-    else
+    else:
         print "The current price of {} is {:.f} which is greater than the active target price!".format(targetCoin, askPrice)
         toggleNextTarget = raw_input("would you like to move to the next target price? y/n: ")
             if toggleNextTarget == 'y' and firstTargetActive == True:
