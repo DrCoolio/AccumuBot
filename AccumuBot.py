@@ -51,10 +51,12 @@ askPrice = coinPrice['Ask']
 
 numCoins = (incrementSize - (incrementSize)*0.00251)) / askPrice
 
+print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
+
 while btcInvested < investmentTotal:
-    print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
+    time.sleep(randint(5,600))
     if askPrice <= activeTargetPrice:
-        time.sleep(randint(5,600))
+        print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)    
         print "Buying {:.8f} {} at {:.8f}".format(numCoins, targetCoin, askPrice)
         print api.buylimit('BTC-' + targetCoin, numCoins, askPrice)
         btcInvested += incrementSize
