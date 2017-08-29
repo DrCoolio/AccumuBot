@@ -46,10 +46,6 @@ activeTargetPrice = firstTargetPrice
 
 targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
 
-firstTargetActive  = True
-secondTargetActive = False
-thirdTargetActive  = False
-
 coinPrice = api.getticker("BTC-" + targetCoin)
 askPrice = coinPrice['Ask']
 
@@ -67,17 +63,13 @@ while btcInvested < investmentTotal:
     else:
         print "The current price of {} is {:.f} which is greater than the active target price!".format(targetCoin, askPrice)
         toggleNextTarget = raw_input("would you like to move to the next target price? y/n: ")
-            if toggleNextTarget == 'y' and firstTargetActive == True:
-                firstTargetActive = False
-                secondTargetActive = True
+            if toggleNextTarget == 'y' and activeTargetPrice = firstTargetPrice:
                 activeTargetPrice = secondTargetPrice
 
-            elif toggleNextTarget == 'y' and secondTargetActive == True:
-                secondTargetActive = False
-                thirdTargetActive == True
+            elif toggleNextTarget == 'y' and activeTargetPrice = secondTargetPrice:
                 activeTargetPrice = thirdTargetPrice
 
-            elif toggleNextTarget == 'y' and thirdTargetActive == True:
+            elif toggleNextTarget == 'y' and activeTargetPrice = thirdTargetPrice:
                 print "You've reached the max accumulation target!"
                 pumpItUp = raw_input("Would you like to use your remaining btc to pump it up? y/n: ")
                     if pumpItUp =='y':
