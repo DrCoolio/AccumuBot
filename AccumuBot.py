@@ -42,7 +42,7 @@ btcInvested = 0.0
 firstTargetPrice = float(raw_input("Enter the first target price: "))
 secondTargetPrice = float(raw_input("Enter the second target price: "))
 thirdTargetPrice = float(raw_input("Enter the third target price: "))
-activeTargetPrice = float(firstTargetPrice)
+activeTargetPrice = firstTargetPrice
 
 targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
 
@@ -55,31 +55,39 @@ askPrice = coinPrice['Ask']
 
 numCoins = (incrementSize - (incrementSize)*0.00251)) / askPrice
 
-print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
-
 while btcInvested < investmentTotal:
-    if askPrice < activeTargetPrice:
-        time.sleep(randint(5,600))                                            # Wait a random amount of time between 5 seconds and 10 minutes to place buy order
-        print api.buylimit('BTC-' + targetCoin, numCoins, askPrice)           # Place a buy order of incrementSize at askPrice
-        btcInvested += incrementSize                                          # Keep track of how much btc the user has invested so far compared against how much they want to invest in total
+    print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
+    if askPrice <= activeTargetPrice:
+        time.sleep(randint(5,600))
+        print "Buying {:.8f} {} at {:.8f}".format(numCoins, targetCoin, askPrice)
+        print api.buylimit('BTC-' + targetCoin, numCoins, askPrice)
+        btcInvested += incrementSize
         print "BTC invested so far: {:.8f} out of {:.8f}".format(btcInvested, investmentTotal)
 
     else
-        print "The current price of {} is {:.f} which is above the active target price!".format(targetCoin, askPrice)
+        print "The current price of {} is {:.f} which is greater than the active target price!".format(targetCoin, askPrice)
         toggleNextTarget = raw_input("would you like to move to the next target price? y/n: ")
-            if toggleNextTarget == 'y' or toggleNextTarget == 'yes' and firstTargetActive == True and secondTargetActive == False and thirdTargetActive == False:
+            if toggleNextTarget == 'y' and firstTargetActive == True:
                 firstTargetActive = False
                 secondTargetActive = True
-                activeTargetPrice = float(secondTargetPrice)
+                activeTargetPrice = secondTargetPrice
 
-            elif toggleNextTarget == 'y' or toggleNextTarget == 'yes'  and firstTargetActive == False and secondTargetActive == True and thirdTargetActive == False:
+            elif toggleNextTarget == 'y' and secondTargetActive == True:
                 secondTargetActive = False
                 thirdTargetActive == True
-                activeTargetPrice = float(thirdTargetPrice)
+                activeTargetPrice = thirdTargetPrice
 
-            elif toggleNextTarget == 'y' or toggleNextTarget == 'yes'  and firstTargetActive == False and secondTargetActive == False and thirdTargetActive == True:
+            elif toggleNextTarget == 'y' and activeTargetPrice == thirdTargetPrice:
                 print "You've reached the max accumulation target!"
-                # Prompt user to buy-in with whatever uninvested BTC they have left at this point(investmentTotal - btcInvested)
+                pumpItUp = raw_input("Would you like to use your remaining btc to pump it up? y/n: ")
+                    if pumpItUp =='y':
+                        incrementSize = float(investmentTotal - btcInvested)
+                        print api.buylimit('BTC-' + targetCoin, numCoins, askPrice)
+                        print "Buying {:.8f} {} at {:.8f}".format(numCoins, targetCoin, askPrice)
+                    else
+                # Setup logic for "no" and "n" input
+                # Setup logic for typo/invalid inputs
+
 
 print "Congratulations, you have filled your investment in {}. Enjoy your profits ;)".format(targetCoin)
 
