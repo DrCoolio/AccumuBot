@@ -36,17 +36,20 @@ while investmentTotal > btcBalance:
 	investmentTotal = float(raw_input("How much do you want to invest ?: "))
 
 incrementSize = float(investmentTotal / 100)
+
 if incrementSize < 0.0005:
     incrementSize == 0.0005
+elif incrementSize > 0.05
+    incrementSize == 0.01
 
 btcInvested = 0.0
+
+targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
 
 firstTargetPrice = float(raw_input("Enter the first target price: "))
 secondTargetPrice = float(raw_input("Enter the second target price: "))
 thirdTargetPrice = float(raw_input("Enter the third target price: "))
 activeTargetPrice = firstTargetPrice
-
-targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
 
 coinPrice = api.getticker("BTC-" + targetCoin)
 askPrice = coinPrice['Ask']
