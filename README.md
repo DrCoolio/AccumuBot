@@ -6,7 +6,7 @@ ETH Address: 0xf66a7ce86824d9b7aff9ffa86e2e6cd02c88bd23
 
 # Getting Started
 
-In order to get the bot up & running you'll need a coupe of things:
+In order to get the bot up & running you'll need a few things:
 
 1. PowerShell (Windows), Terminal (OSX), or Bash (Linux) <br>
 2. Python 2: https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
