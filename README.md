@@ -35,4 +35,4 @@ Next you'll need to setup the secrets.json file so that it has your API Key and 
 }
 ```
 
-Make sure you do not alter the file beyond that, and make sure the quotation marks remain there as well.
+Make sure you do not alter the file beyond that, and make sure the quotation marks remain there as well. Save the secrets.json file with your changes and now you're ready to start running the bot!
