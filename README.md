@@ -68,4 +68,26 @@ The bot will then begin to accumulate the coin. It will randomly wait anywhere b
 ```
 would you like to move to the next target price? y/n: y
 ```
-if you enter 'y' then the next target price will become active the bot will resume buying until the Ask price has gone above the new active target, at which point you will be prompted again to change the target price. If you enter 'n' then the bot will continuously check the Ask price of the coin every 30 seconds and will not resume buying until the Ask price has dipped back under the active target price.
+If you enter 'y' then the next target price will become active the bot will resume buying until the Ask price has gone above the new active target, at which point you will be prompted again to change the target price. 
+
+<br>If you enter 'n' then the bot will continuously check the Ask price of the coin every 30 seconds and will not resume buying until the Ask price has dipped back under the active target price.
+
+<br>Once there are no more targets to reach for and you enter 'y' the bot will tell you that you've reached the final accumulation target and prompt you to "pump it up":
+```
+You've reached the max accumulation target!
+Would you like to use your remaining btc to pump it up? y/n: y
+```
+If you enter 'y' then the bot will subtract the amount of BTC you have already invested from the total amount you told the bot to invest with and buy-in with the remainder at Ask price.
+
+<br>If you enter 'n' here, then the bot will terminate and you will be on your own for pumping for further accumulation if you wish. 
+
+<br>Finally if you chose not to pump, or if the bot has gone through all of it's accumulations successfuly and used up all of the volume of BTC you told it you wanted to invest with it will exit and you'll be on your own to sell your coins at whatever profit you like.
+
+```
+Accumulation complete. Enjoy your profits ;)
+```
+
+I hope this bot works out for yoU! I spent a lot of time thinking through and implementing this code, so if you find it useful, send a tip my way!
+
+BTC Address: 18QXtBzaTmDj7gna7Nq1TtjgAy768KDfEB <br>
+ETH Address: 0xf66a7ce86824d9b7aff9ffa86e2e6cd02c88bd23
