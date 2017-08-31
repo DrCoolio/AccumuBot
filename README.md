@@ -36,3 +36,15 @@ Next you'll need to setup the secrets.json file so that it has your API Key and 
 ```
 
 Make sure you do not alter the file beyond that, and make sure the quotation marks remain there as well. Save the secrets.json file with your changes and now you're ready to start running the bot!
+
+# Running AccumuBot
+
+In order to start using Accumubot, begin by navigating to the folder containing the AccumuBot.py file (this folder should also have your secrets.json and bittrex.py files). In the examples my folder is located on my Desktop
+
+```
+C:\Users\DrCoolio> cd Desktop\AccumuBot
+```
+Once you have navigated to the appropriate folder, run the bot:
+```
+C:\Users\DrCoolio\Desktop\AccumuBot> python AccumuBot.py
+```
