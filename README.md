@@ -63,3 +63,9 @@ Enter the first target price: 0.00000125
 Enter the second target price: 0.00000200
 Enter the third target price: 0.00000250
 ```
+The bot will then begin to accumulate the coin. It will randomly wait anywhere between 5 seconds and 1,296 seconds (21.6 minutes) between each buy-in order (so as to make the accumulation more subtle and undetected). Each buy-in will constitute 1% of the total amount you told the bot to use to invest, or a minimum of 50,000satoshi as you cannot place buy orders for less than that on Bittrex.
+<br>If the Ask price goes above the target price you will be prompted to activate the next target price:
+```
+would you like to move to the next target price? y/n: y
+```
+if you enter 'y' then the next target price will become active the bot will resume buying until the Ask price has gone above the new active target, at which point you will be prompted again to change the target price. If you enter 'n' then the bot will continuously check the Ask price of the coin every 30 seconds and will not resume buying until the Ask price has dipped back under the active target price.
