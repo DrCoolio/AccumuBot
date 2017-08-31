@@ -79,7 +79,7 @@ Would you like to use your remaining btc to pump it up? y/n: y
 ```
 If you enter 'y' then the bot will subtract the amount of BTC you have already invested from the total amount you told the bot to invest with and buy-in with the remainder at Ask price.
 
-<br>If you enter 'n' here, then the bot will terminate and you will be on your own for pumping for further accumulation if you wish. 
+<br>If you enter 'n' here, then the bot will terminate and you will be on your own for pumping or further accumulation if you wish. 
 
 <br>Finally if you chose not to pump, or if the bot has gone through all of it's accumulations successfuly and used up all of the volume of BTC you told it you wanted to invest with it will exit and you'll be on your own to sell your coins at whatever profit you like.
 
