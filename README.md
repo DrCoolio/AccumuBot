@@ -48,4 +48,18 @@ Once you have navigated to the appropriate folder, run the bot:
 ```
 C:\Users\DrCoolio\Desktop\AccumuBot> python AccumuBot.py
 ```
-The bot print out the total available BTC in your bittrex account, it will then ask you how much BTC you would like to invest in your accumulation. 
+The bot will print the total available BTC in your bittrex account, it will then ask you how much BTC you would like to invest in your accumulation. 
+```
+You have 10.572 BTC available.
+How much do you want to invest ?: 0.5
+```
+Then the bot will ask you what coin you wish to accumulate:
+```
+Enter the target coin ticker name (i.e. BTC, ETH, BITB): XVG
+```
+After you've told the bot the coin it will ask you three target prices. At any given time the bot will NOT place buy-orders if the Ask price is above the "active" target price. The first target price defaults to active, and the second and third are activated sequentially later in the bot's progression.
+```
+Enter the first target price: 0.00000125
+Enter the second target price: 0.00000200
+Enter the third target price: 0.00000250
+```
