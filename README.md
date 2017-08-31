@@ -14,9 +14,14 @@ In order to get the bot up & running you'll need a coupe of things:
 <br>    3a. Make sure your API key has enabled "Read Info", "Trade Limit", and "Trade Market"
 <br>    3b. Make sure that "Withdraw" is DISABLED on your API
 
-You can verify that you have Python installed correctly by typing 'python' into PowerShell and it should return the following result:
+You can verify that you have Python installed correctly by typing 
+```
+python 
+```
+<br>into PowerShell and it should return the following result:
 
 ```
+C:\Users\DrCoolio> python
 Python 2.7.13 (v2.7.13:a06454b1afa1, Dec 17 2016, 20:42:59) [MSC v.1500 32 bit (Intel)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 ```
