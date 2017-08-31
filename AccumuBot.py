@@ -54,7 +54,7 @@ numCoins = (incrementSize - (incrementSize)*0.00251) / askPrice
 print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
 
 while btcInvested < investmentTotal:
-    time.sleep(randint(5,600))
+    time.sleep(randint(5,1296))
     if askPrice <= activeTargetPrice:
         print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
         print "Buying {:.8f} {} at {:.8f}".format(numCoins, targetCoin, askPrice)
@@ -63,13 +63,15 @@ while btcInvested < investmentTotal:
         print "BTC invested so far: {:.8f} out of {:.8f}".format(btcInvested, investmentTotal)
 
     else:
-        print "The current price of {} is {:.8f} which is greater than the active target price!".format(targetCoin, askPrice)
+        print "The current price of {} is {:.8f} which is greater than the active target price of {}!".format(targetCoin, askPrice, activeTargetPrice)
         toggleNextTarget = raw_input("would you like to move to the next target price? y/n: ")
         if toggleNextTarget == 'y' and activeTargetPrice == firstTargetPrice:
             activeTargetPrice = secondTargetPrice
+            print "New target price set! Bot will attempt to accumulate under {}".format(activeTargetPrice)
 
         elif toggleNextTarget == 'y' and activeTargetPrice == secondTargetPrice:
             activeTargetPrice = thirdTargetPrice
+            print "New target price set! Bot will attempt to accumulate under {}".format(activeTargetPrice)
 
         elif toggleNextTarget == 'y' and activeTargetPrice == thirdTargetPrice:
             print "You've reached the max accumulation target!"
@@ -84,9 +86,11 @@ while btcInvested < investmentTotal:
                 break
 
         elif toggleNextTarget == 'n':
-            print "Ok, I will wait for the price to come back down below the active target and try to buy again."
+            print "Ok, bot will wait for the price to come back down below the active target and try to buy again."
             while askPrice > activeTargetPrice:
-                time.sleep(30)
+                print "Current Ask is {:.8f}".format(askPrice)
+                print "Waiting for price to drop below active target..."
+                time.sleep(60)
 
         else:
             toggleNextTarget = raw_input("Invalid input, please enter 'y' or 'n' without quotations: ")
