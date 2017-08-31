@@ -17,7 +17,7 @@ def get_secret(secret_file):
 
     return str(secrets_json['key']), str(secrets_json['secret'])
 # setup api
-key, secret = get_secret("secrets-b.json")
+key, secret = get_secret("secrets.json")
 api = bittrex(key, secret)
 
 # do before entering coin to save the API call during the pump
@@ -63,7 +63,7 @@ while btcInvested < investmentTotal:
         print "BTC invested so far: {:.8f} out of {:.8f}".format(btcInvested, investmentTotal)
 
     else:
-        print "The current price of {} is {:.f} which is greater than the active target price!".format(targetCoin, askPrice)
+        print "The current price of {} is {:.8f} which is greater than the active target price!".format(targetCoin, askPrice)
         toggleNextTarget = raw_input("would you like to move to the next target price? y/n: ")
         if toggleNextTarget == 'y' and activeTargetPrice == firstTargetPrice:
             activeTargetPrice = secondTargetPrice
