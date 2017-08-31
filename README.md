@@ -39,7 +39,7 @@ Make sure you do not alter the file beyond that, and make sure the quotation mar
 
 # Running AccumuBot
 
-In order to start using Accumubot, begin by navigating to the folder containing the AccumuBot.py file (this folder should also have your secrets.json and bittrex.py files). In the examples my folder is located on my Desktop
+In order to start using AccumuBot, begin by navigating to the folder containing the AccumuBot.py file (this folder should also have your secrets.json and bittrex.py files). In the examples my folder is located on my Desktop
 
 ```
 C:\Users\DrCoolio> cd Desktop\AccumuBot
