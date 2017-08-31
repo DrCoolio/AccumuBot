@@ -36,6 +36,8 @@ while investmentTotal > btcBalance:
 	investmentTotal = float(raw_input("How much do you want to invest ?: "))
 
 incrementSize = float(investmentTotal / 100)
+if incrementSize < 0.0005:
+    incrementSize == 0.0005
 
 btcInvested = 0.0
 
