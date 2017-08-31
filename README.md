@@ -4,7 +4,7 @@ A coin accumulation bot for the professionals. I spent a lot of time thinking th
 BTC Address: 18QXtBzaTmDj7gna7Nq1TtjgAy768KDfEB <br>
 ETH Address: 0xf66a7ce86824d9b7aff9ffa86e2e6cd02c88bd23
 
-# Getting Started & How to Use the AccumuBot
+# Getting Started
 
 In order to get the bot up & running you'll need a coupe of things:
 
