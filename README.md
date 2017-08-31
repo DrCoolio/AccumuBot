@@ -25,3 +25,14 @@ C:\Users\DrCoolio> python
 Python 2.7.13 (v2.7.13:a06454b1afa1, Dec 17 2016, 20:42:59) [MSC v.1500 32 bit (Intel)] on win32
 Type "help", "copyright", "credits" or "license" for more information.
 ```
+
+Next you'll need to setup the secrets.json file so that it has your API Key and Secret for the bot to reference when connecting to Bittrex. Simply copy & paste your own key and secret from bittrex into the secrets.json file in the following format:
+
+```
+{
+  "key": "Paste your bittrex API key here",
+  "secret": "Paste your bittrex API secret here"
+}
+```
+
+Make sure you do not alter the file beyond that, and make sure the quotation marks remain there as well.
