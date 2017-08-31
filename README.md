@@ -18,7 +18,7 @@ You can verify that you have Python installed correctly by typing
 ```
 python 
 ```
-<br>into PowerShell and it should return the following result:
+into PowerShell and it should return the following result:
 
 ```
 C:\Users\DrCoolio> python
