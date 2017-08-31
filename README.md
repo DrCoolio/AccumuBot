@@ -11,5 +11,5 @@ In order to get the bot up & running you'll need a coupe of things:
 1. PowerShell (Windows), Terminal (OSX), or Bash (Linux) <br>
 2. Python 2: https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
 3. Your own Bittrex API key & secret: https://bittrex.com/Manage#sectionApi
-    3a. Make sure your API key has enabled "Read Info", "Trade Limit", and "Trade Market"
-    3b. Make sure that "Withdraw" is DISABLED on your API
+<br>    3a. Make sure your API key has enabled "Read Info", "Trade Limit", and "Trade Market"
+<br>    3b. Make sure that "Withdraw" is DISABLED on your API
