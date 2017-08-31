@@ -48,3 +48,4 @@ Once you have navigated to the appropriate folder, run the bot:
 ```
 C:\Users\DrCoolio\Desktop\AccumuBot> python AccumuBot.py
 ```
+The bot print out the total available BTC in your bittrex account, it will then ask you how much BTC you would like to invest in your accumulation. 
