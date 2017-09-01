@@ -59,7 +59,7 @@ while btcInvested < investmentTotal:
     if incrementSize < 0.0005:
         incrementSize = 0.0005 + round(random.uniform(0, (incrementSize/1.5)), 8)
     elif incrementSize > 0.05:
-        incrementSize = 0.01 + round(random.uniform(0, (incrementSize/4)), 8)
+        incrementSize = 0.01 + round(random.uniform(0, (incrementSize/3)), 8)
     else:
         incrementSize = incrementSize + round(random.uniform(0, (incrementSize/2)), 8))
 
