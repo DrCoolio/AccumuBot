@@ -5,6 +5,7 @@ import signal
 import sys
 import time
 import os
+import random
 from random import randint
 
 # Get these from https://bittrex.com/Account/ManageApiKey
@@ -35,12 +36,12 @@ while investmentTotal > btcBalance:
 	print 'You can\'t invest more than {}'.format(btcBalance)
 	investmentTotal = float(raw_input("How much do you want to invest ?: "))
 
-incrementSize = float(investmentTotal / 100)
+incrementSize = float((investmentTotal / 100) + round(random.uniform(0, (investmentTotal/2)), 8))
 
 if incrementSize < 0.0005:
-    incrementSize == 0.0005
-elif incrementSize > 0.05
-    incrementSize == 0.01
+    incrementSize == 0.0005 + round(random.uniform(0, (investmentTotal/1.5)), 8)
+elif incrementSize > 0.05:
+    incrementSize == 0.01 + round(random.uniform(0, (investmentTotal/4)), 8)
 
 btcInvested = 0.0
 
@@ -59,7 +60,8 @@ numCoins = (incrementSize - (incrementSize)*0.00251) / askPrice
 print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
 
 while btcInvested < investmentTotal:
-    time.sleep(randint(5,1296))
+    print "Waiting a random amount of time between 5 seconds and 25 minutes to execute buying..."
+    time.sleep(randint(5,1500))
     if askPrice <= activeTargetPrice:
         print 'Current ask price for {} is {:.8f} BTC.'.format(targetCoin, askPrice)
         print "Buying {:.8f} {} at {:.8f}".format(numCoins, targetCoin, askPrice)
