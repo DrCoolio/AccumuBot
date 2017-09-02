@@ -35,7 +35,8 @@ investmentTotal = float(raw_input("How much do you want to invest ?: "))
 while investmentTotal > btcBalance:
 	print 'You can\'t invest more than {}'.format(btcBalance)
 	investmentTotal = float(raw_input("How much do you want to invest ?: "))
-    incrementSize = float(investmentTotal / 100)
+
+incrementSize = float(investmentTotal / 100)
 
 btcInvested = 0.0
 
