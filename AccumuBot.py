@@ -8,7 +8,7 @@ import os
 import random
 from random import randint
 
-# Get these from https://bittrex.com/Account/ManageApiKey
+
 def get_secret(secret_file):
     """Grabs API key and secret from file and returns them"""
 
@@ -17,11 +17,10 @@ def get_secret(secret_file):
         secrets.close()
 
     return str(secrets_json['key']), str(secrets_json['secret'])
-# setup api
+
 key, secret = get_secret("secrets.json")
 api = bittrex(key, secret)
 
-# do before entering coin to save the API call during the pump
 btcBalance = api.getbalance("BTC")['Available']
 
 def sigint_handler(signum, frame):
