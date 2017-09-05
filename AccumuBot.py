@@ -37,7 +37,6 @@ while investmentTotal > btcBalance:
 	investmentTotal = float(raw_input("How much do you want to invest ?: "))
 
 incrementSize = float(investmentTotal / 100)
-
 btcInvested = 0.0
 
 targetCoin = raw_input("Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
@@ -61,7 +60,7 @@ while btcInvested < investmentTotal:
     elif incrementSize > 0.05:
         incrementSize = 0.01 + round(random.uniform(0, (incrementSize/3)), 8)
     else:
-        incrementSize = incrementSize + round(random.uniform(0, (incrementSize/2)), 8))
+        incrementSize = incrementSize + round(random.uniform(0, (incrementSize/2)), 8)
 
     print "Currently waiting a random amount of time between 5 seconds and 25 minutes to execute buying..."
     time.sleep(randint(5,1500))
