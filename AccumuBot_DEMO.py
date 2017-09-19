@@ -20,15 +20,16 @@ def get_secret(secret_file):
 key, secret = get_secret("secrets.json")
 api = bittrex(key, secret)
 
+
 # ********** Variable Initializations **********
 
 activeTargetPrice = 0.0
 btcInvested = 0.0
 
-
 # ********** Function Definitions **********
 
 def setPriceCeiling():
+
     global activeTargetPrice
 
     activeTargetPrice = priceCeiling_Entry.get()
@@ -37,8 +38,8 @@ def setPriceCeiling():
 
     status_Label['text'] = "STATUS: New Price Ceiling Set at {:.8f} BTC".format(activeTargetPrice)
 
-
 def runAccumuBot():
+
     global activeTargetPrice
 
     activeTargetPrice = priceCeiling_Entry.get()
@@ -68,21 +69,18 @@ def runAccumuBot():
             if askPrice <= activeTargetPrice:
                 btcInvested += incrementSize
                 status_Label['text'] = "STATUS: Buying {:.8f} {} at {:.8f}...BTC invested so far: {:.8f} out of {:.8f}".format(numCoins, targetCoin, askPrice, btcInvested, investmentTotal)
-                print api.buylimit('BTC-' + targetCoin, numCoins, askPrice)
                 root.after(15000, accumulate)
-
+                
             else:
-                status_Label[
-                    'text'] = "STATUS: Current Ask Price is {:.8f}. Waiting for price to drop below active target...BTC invested so far: {:.8f} out of {:.8f}".format(
-                    askPrice, btcInvested, investmentTotal)
+                status_Label['text'] = "STATUS: Current Ask Price is {:.8f}. Waiting for price to drop below active target...BTC invested so far: {:.8f} out of {:.8f}".format(askPrice, btcInvested, investmentTotal)
                 root.after(randint(1000, 60000), buyOrWait)
 
         if btcInvested < investmentTotal:
             incrementSize = float(investmentTotal / 100)
             if incrementSize < 0.0005:
-                incrementSize = 0.0005 + round(random.uniform(0, (incrementSize * 2)), 8)
+                incrementSize = 0.0005 + round(random.uniform(0, (incrementSize*2)), 8)
             elif incrementSize > 0.05:
-                incrementSize = 0.01 + round(random.uniform(0, (incrementSize / 2)), 8)
+                incrementSize = 0.01 + round(random.uniform(0, (incrementSize/2)), 8)
             else:
                 incrementSize = incrementSize + round(random.uniform(0, (incrementSize)), 8)
 
@@ -94,9 +92,9 @@ def runAccumuBot():
 
     accumulate()
 
-
 root = Tk()
 root.title("AccumuBot DEMO MODE")
+
 
 # ********** Core Settings Section **********
 
@@ -108,6 +106,7 @@ investmentTotal_Entry = Entry(root)
 investmentTotal_Label.grid(sticky=E)
 investmentTotal_Entry.grid(row=0, column=1, pady=10, sticky=W)
 
+
 # *** Target Coin ||| Label(), Entry(), and Button() ***
 
 targetCoin_Label = Label(root, text="Enter the target coin ticker name (i.e. BTC, ETH, BITB): ")
@@ -115,6 +114,7 @@ targetCoin_Entry = Entry(root)
 
 targetCoin_Label.grid(row=1, sticky=E)
 targetCoin_Entry.grid(row=1, column=1, pady=10, sticky=W)
+
 
 # *** Active Buy-in Ceiling ||| Label(), Entry(), and Button() ***
 
@@ -125,6 +125,7 @@ priceCeiling_Button = Button(root, text="Set New Buy-in Ceiling", command=setPri
 priceCeiling_Label.grid(row=2, column=0, sticky=E, pady=10)
 priceCeiling_Entry.grid(row=2, column=1, sticky=W)
 priceCeiling_Button.grid(row=2, column=2, sticky=W)
+
 
 # ********** Start & Stop Buttons Section **********
 
@@ -139,6 +140,7 @@ runAccumubot_Button.grid(row=4, column=0, pady=10)
 stopAccumubot_button = Button(root, text="Stop AccumutBot")
 
 stopAccumubot_button.grid(row=4, column=1)
+
 
 # ********** Status & Alerts Log Section **********
 
