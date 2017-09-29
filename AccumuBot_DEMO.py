@@ -25,6 +25,7 @@ api = bittrex(key, secret)
 
 activeTargetPrice = 0.0
 btcInvested = 0.0
+buyIn = True
 
 # ********** Function Definitions **********
 
@@ -38,9 +39,24 @@ def setPriceCeiling():
 
     status_Label['text'] = "STATUS: New Price Ceiling Set at {:.8f} BTC".format(activeTargetPrice)
 
+
+def stopAccumuBot():
+
+    global buyIn
+
+    buyIn = False
+    status_Label['text'] = "STATUS: Bot stopped. Press 'Resume AccumuBot' to continue."
+    runAccumubot_Button['text'] = "Resume AccumuBot"
+
+
 def runAccumuBot():
 
     global activeTargetPrice
+    global buyIn
+
+    buyIn = True
+
+    runAccumubot_Button['text'] = "Start AccumuBot"
 
     activeTargetPrice = priceCeiling_Entry.get()
     activeTargetPrice = float(activeTargetPrice)
@@ -66,31 +82,38 @@ def runAccumuBot():
 
             global btcInvested
 
-            if askPrice <= activeTargetPrice:
-                btcInvested += incrementSize
-                status_Label['text'] = "STATUS: Buying {:.8f} {} at {:.8f}...BTC invested so far: {:.8f} out of {:.8f}".format(numCoins, targetCoin, askPrice, btcInvested, investmentTotal)
-                root.after(15000, accumulate)
-                
-            else:
-                status_Label['text'] = "STATUS: Current Ask Price is {:.8f}. Waiting for price to drop below active target...BTC invested so far: {:.8f} out of {:.8f}".format(askPrice, btcInvested, investmentTotal)
-                root.after(randint(1000, 60000), buyOrWait)
+            if buyIn:
+                if askPrice <= activeTargetPrice:
+                    btcInvested += incrementSize
+                    status_Label['text'] = "STATUS: Bought {:.8f} {} at {:.8f}...BTC invested so far: {:.8f} out of {:.8f}".format(numCoins, targetCoin, askPrice, btcInvested, investmentTotal)
+                    root.after(15000, accumulate)
 
-        if btcInvested < investmentTotal:
-            incrementSize = float(investmentTotal / 100)
-            if incrementSize < 0.0005:
-                incrementSize = 0.0005 + round(random.uniform(0, (incrementSize*2)), 8)
-            elif incrementSize > 0.05:
-                incrementSize = 0.01 + round(random.uniform(0, (incrementSize/2)), 8)
+                else:
+                    status_Label['text'] = "STATUS: Current Ask Price is {:.8f}. Waiting for price to drop below active target...BTC invested so far: {:.8f} out of {:.8f}".format(askPrice, btcInvested, investmentTotal)
+                    root.after(randint(1000, 60000), buyOrWait)
             else:
-                incrementSize = incrementSize + round(random.uniform(0, (incrementSize)), 8)
+                status_Label['text'] = "STATUS: Bot stopped. Press 'Resume AccumuBot' to continue."
 
-            status_Label['text'] = "STATUS: Currently waiting a random amount of time between 5 seconds and 25 minutes to execute buying...BTC invested so far: {:.8f} out of {:.8f}".format(btcInvested, investmentTotal)
-            root.after(randint(5000, 1500000), buyOrWait)
+        if buyIn:
+            if btcInvested < investmentTotal:
+                incrementSize = float(investmentTotal / 100)
+                if incrementSize < 0.0005:
+                    incrementSize = 0.0005 + round(random.uniform(0, (incrementSize*2)), 8)
+                elif incrementSize > 0.05:
+                    incrementSize = 0.01 + round(random.uniform(0, (incrementSize/2)), 8)
+                else:
+                    incrementSize = incrementSize + round(random.uniform(0, (incrementSize)), 8)
+
+                status_Label['text'] = "STATUS: Currently waiting a random amount of time between 5 seconds and 25 minutes to execute buying...BTC invested so far: {:.8f} out of {:.8f}".format(btcInvested, investmentTotal)
+                root.after(randint(5000, 1500000), buyOrWait)
+            else:
+                status_Label['text'] = "STATUS: {:.8f} out of {:.8f} BTC Invested! Accumulation Complete! Enjoy your profits! ;)".format(btcInvested, investmentTotal)
 
         else:
-            status_Label['text'] = "STATUS: {:.8f} out of {:.8f} BTC Invested! Accumulation Complete! Enjoy your profits! ;)".format(btcInvested, investmentTotal)
+            status_Label['text'] = "STATUS: Bot stopped. Press 'Resume AccumuBot' to continue."
 
     accumulate()
+
 
 root = Tk()
 root.title("AccumuBot DEMO MODE")
@@ -131,13 +154,13 @@ priceCeiling_Button.grid(row=2, column=2, sticky=W)
 
 # *** Start the Bot ||| Button() ***
 
-runAccumubot_Button = Button(root, text="Run AccumuBot", command=runAccumuBot)
+runAccumubot_Button = Button(root, text="Start AccumuBot", command=runAccumuBot)
 
 runAccumubot_Button.grid(row=4, column=0, pady=10)
 
 # *** Stop the Bot ||| Button() ***
 
-stopAccumubot_button = Button(root, text="Stop AccumutBot")
+stopAccumubot_button = Button(root, text="Stop AccumutBot", command=stopAccumuBot)
 
 stopAccumubot_button.grid(row=4, column=1)
 
@@ -149,5 +172,5 @@ stopAccumubot_button.grid(row=4, column=1)
 status_Label = Label(root, text="Welcome to AccumuBot!", relief=RIDGE)
 status_Label.grid(rowspan=6, padx=25, pady=15, columnspan=10)
 
-root.geometry("1000x250")
+root.geometry("600x250")
 root.mainloop()
