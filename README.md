@@ -8,7 +8,7 @@ ETH Address: 0xf66a7ce86824d9b7aff9ffa86e2e6cd02c88bd23
 
 In order to get the bot up & running you'll need a few things:
 
-1. Python 2: https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi
+1. Python 2: https://www.python.org
 2. PyCharm IDE: https://www.jetbrains.com/pycharm/download/#section=windows
 3. Your own Bittrex API key & secret: https://bittrex.com/Manage#sectionApi
 <br>    3a. Make sure your API key has enabled "Read Info", "Trade Limit", and "Trade Market"
