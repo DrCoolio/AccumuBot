@@ -1,6 +1,4 @@
 # AccumuBot
-A coin accumulation bot for the professionals. I spent a lot of time thinking through and implementing this bot, so if you find it useful, send a tip my way!
-
 
 # Getting Started
 
